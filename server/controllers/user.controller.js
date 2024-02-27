@@ -1,5 +1,7 @@
 const { User } = require("../models/user.model");
-const redisClient = require("../redis/init.redis");
+// const redisClient = require("../redis/init.redis");
+const redis = require("redis");
+// const client = redis.createClient();
 
 const userController = {
   // Controller để tạo người dùng mới
@@ -20,14 +22,38 @@ const userController = {
   // Controller để lấy thông tin của một người dùng dựa trên ID
   getUserById: async (req, res) => {
     try {
-        const user = await User.findById(req.params.user_id);
-        if (!user) {
-          return res.status(404).json({ message: 'User not found' });
+      const client = redis.createClient();
+      await client.connect();
+
+      const userId = req.params.user_id;
+
+      // Kiểm tra xem thông tin người dùng có trong Redis không
+      const cachedUser = await client.get(userId);
+      if (cachedUser) {
+        console.log("Có dữ liệu từ Redis cache");
+        return res.json({
+          data: JSON.parse(cachedUser),
+        });
+      } else {
+        console.log("Không có dữ liệu từ Redis cache");
+
+        // Nếu không có trong Redis, truy xuất từ MongoDB
+        const userFromDB = await User.findById(userId);
+        if (!userFromDB) {
+          console.log("Người dùng không tồn tại trong MongoDB");
+          return res.status(404).json({ message: "User not found" });
         }
-        res.status(200).json(user);
-      } catch (err) {
-        res.status(500).json({ message: err.message });
+
+        // Lưu thông tin người dùng vào Redis để lần sau truy xuất nhanh hơn
+        await client.set(userId, JSON.stringify(userFromDB));
+
+        return res.json({
+          data: userFromDB,
+        });
       }
+    } catch (err) {
+      res.status(500).json({ message: err.message });
+    }
   },
 
   // Controller để cập nhật thông tin của một người dùng dựa trên ID

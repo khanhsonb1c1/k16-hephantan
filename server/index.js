@@ -9,11 +9,14 @@ const cors = require('cors');
 const bodyParser = require("body-parser");
 
 // const redisClient = require("./redis/init.redis");
-
+// const PORT_REDIS = 6379;
+// const redis = require("redis");
 
 // app.set('redisClient', redisClient);
 
 // require("./redis/init.redis")
+
+// const redisClient = redis.createClient(PORT_REDIS);
 
 
 app.use(cors())
