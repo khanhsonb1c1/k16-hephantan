@@ -24,6 +24,7 @@ app.use(cors())
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use("/user", require("./routes/user.route"))
+// Khai báo route API
 
 
 app.get('/', (req, res) => {
@@ -31,8 +32,12 @@ app.get('/', (req, res) => {
 })
 
 require("./database/init.mongodb")
+// Kết nối cơ sở dữ liệu
 
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
+
+
+// bắt đầu từ đây

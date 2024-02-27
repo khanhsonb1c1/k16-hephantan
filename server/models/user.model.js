@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 
+// Phân này là định nghĩa cho các bảng sẽ tạo, kiểu cái khung
+
 // Định nghĩa schema cho người dùng
 const userSchema = new mongoose.Schema({
   username: {
