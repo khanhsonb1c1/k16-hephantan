@@ -18,11 +18,9 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  // Các trường thông tin khác của người dùng có thể thêm vào sau
   fullName: String,
   age: Number,
   address: String,
-  // Ví dụ: định nghĩa các trường khác tùy theo yêu cầu của ứng dụng của bạn
 });
 
 // Tạo model từ schema

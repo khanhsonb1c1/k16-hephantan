@@ -1,15 +1,9 @@
-const PORT = 6379;
+// const PORT = 6379;
 const redis = require("redis");
 
-console.log("ok");
-const redisClient = redis.createClient(PORT);
+const TIME_LIMIT = 3600; //Thời gian hết hạn cache
 
-redisClient.on("connect", () => {
-  console.log("Connected to Redis on port", PORT);
-});
+const client = redis.createClient();
+client.connect();
 
-redisClient.on("error", (err) => {
-  console.error("Error connecting to Redis:", err);
-});
-
-module.exports = redisClient;
+module.exports = { client, TIME_LIMIT };
