@@ -1,5 +1,5 @@
 <template>
-  <div class="col-3">
+  <div class="col-3 mt-2 mb-1">
     <div class="card">
       <img :src="product.img_url" class="card-img-top" />
       <div class="card-body">
@@ -8,8 +8,11 @@
         <p class="card-text">
           {{ product.description }}
         </p>
-
-        <router-link  :to="`/product/${product._id}`" class="btn btn-primary">Mua ngay</router-link>
+        <div class="d-flex" style="justify-content: space-between">
+          <router-link  :to="`/product/${product._id}`" class="btn btn-primary">Chi tiết</router-link>
+        <div class="btn btn-danger">Xóa</div>
+        </div>
+        
       </div>
     </div>
   </div>
