@@ -19,6 +19,10 @@ const userSchema = new mongoose.Schema({
     required: true,
   },
   fullName: String,
+  role: {
+    type: String,
+    required: true,
+  },
   age: Number,
   address: String,
 });

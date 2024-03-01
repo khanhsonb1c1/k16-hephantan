@@ -30,7 +30,7 @@ class UserService {
       throw new Error('Error fetching user');
     }
   }
-
+// Cập nhật User và phân quyền user 
   async updateUser(userId, userData) {
     try {
       const updatedUser = await User.findByIdAndUpdate(userId, userData, { new: true });

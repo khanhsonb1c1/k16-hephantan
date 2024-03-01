@@ -7,7 +7,8 @@ const mongoose = require('mongoose');
 
 // const { db: { host, name, port}} = require("../configs/config.mongodb")
 
-const connectString = "mongodb+srv://khanhson05072000:1234567890@cluster0.wo675js.mongodb.net/"
+// const connectString = "mongodb+srv://khanhson05072000:1234567890@cluster0.wo675js.mongodb.net/"
+const connectString = "mongodb+srv://nguyentuanlong1210:longdua1210@cluster0.gc0upfh.mongodb.net/"
 // sau này sẽ đổi đường dẫn này
 
 console.log(connectString, 'connect string')

@@ -10,7 +10,7 @@
         </p>
         <div class="d-flex" style="justify-content: space-between">
           <router-link  :to="`/product/${product._id}`" class="btn btn-primary">Chi tiết</router-link>
-        <div class="btn btn-danger">Xóa</div>
+        <div class="btn btn-danger" @click="deleteProduct()">Xóa</div>
         </div>
         
       </div>
@@ -19,10 +19,16 @@
 </template>
 
 <script>
+import axios from "axios"
 export default {
   props: ["product"],
   methods: {
-    
+    deleteProduct() {
+      const url = `http://localhost:3000/api/products/${this.product._id}`
+      axios.delete(url).then(() => {
+       alert("Xoa thanh cong")
+      });
+    }
   },
 };
 </script>

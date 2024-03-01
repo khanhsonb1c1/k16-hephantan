@@ -1,6 +1,9 @@
 <template>
   <div class="container">
  
+    <div class="d-flex justify-content-center mt-5 ">
+     <h4 class="text-primary text-uppercase"> Quản lý bán hoa quả</h4>
+    </div>
     <div class="row mt-5">
       <product-card
         v-for="product in list"
