@@ -12,6 +12,14 @@ app.use(bodyParser.json()); // Xử lý dữ liệu gửi đến dạng JSON
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
+require("./database/init.mongodb")
+// Kết nối cơ sở dữ liệu
+
+require("./redis/init.redis")
+// Kết nối REDIS
+
+
 app.use("/api/", require("./routes/user.route"));
 app.use("/api/", require("./routes/product.route"));
 // Khai báo route API
@@ -20,9 +28,6 @@ app.use("/api/", require("./routes/product.route"));
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
-
-require("./database/init.mongodb")
-// Kết nối cơ sở dữ liệu
 
 
 app.listen(port, () => {

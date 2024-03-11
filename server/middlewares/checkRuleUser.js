@@ -2,9 +2,9 @@ const {User} = require("../models/user.model")
 
 const checkRoleUser = async(req, res, next) => {
 
-    const id = req.params.user_id;
+    const id = req.params.admin_id;
 
-    // Timf trong CSDL, lay ra thong tin user_id
+    // Timf trong CSDL, lay ra thong tin admin_id
    const user_info = await User.findById(id);
     console.log(user_info, "user info")
    if (user_info.role == "admin") {

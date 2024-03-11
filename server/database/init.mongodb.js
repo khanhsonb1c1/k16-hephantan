@@ -1,51 +1,26 @@
-// mongodb+srv://khanhson05072000:1234567890@cluster0.wo675js.mongodb.net/
-
-
-'use strict'
-
-const mongoose = require('mongoose');
-
-// const { db: { host, name, port}} = require("../configs/config.mongodb")
-
 // const connectString = "mongodb+srv://khanhson05072000:1234567890@cluster0.wo675js.mongodb.net/"
-const connectString = "mongodb+srv://nguyentuanlong1210:longdua1210@cluster0.gc0upfh.mongodb.net/"
+// const connectString = "mongodb+srv://nguyentuanlong1210:longdua1210@cluster0.gc0upfh.mongodb.net/"
+// const connectString = "mongodb+srv://khanhson05072000:son050720@cluster0.emlhrub.mongodb.net/"
+
+
+// Test
+const connectString = "mongodb://localhost:27017"
+
+
+// triển khai master/slave
+// const connectString =
+//   "mongodb://localhost:27018,localhost:27019,localhost:27020/admin?authSource=admin&replicaSet=hephantan";
+
 // sau này sẽ đổi đường dẫn này
-
-console.log(connectString, 'connect string')
-// Phân dứoi này là debug thôi
-class Database {
-    constructor() {
-        this.connect();
-    };
+const mongoose = require("mongoose");
 
 
-    // connect
-    connect(type = 'mongodb'){
-
-        if(1 === 1) {
-            mongoose.set('debug', true)
-            mongoose.set('debug', {color: true})
-        }
-
-        mongoose.connect(connectString, {
-            maxPoolSize: 10 // max connect 
-        }).then(() => {
-            console.log('connect successfully')
-        }).catch((err) => {
-            console.log('Connect error: ', err)
-        })
-    }
 
 
-    static getInstance() {
-        if(!Database.instance) {
-            Database.instance = new Database()
-        }  
-        return Database.instance; 
-    }
-}
+// Connect to MongoDB
+mongoose
+  .connect(connectString)
+  .then(() => console.log("MongoDB connected"))
+  .catch((err) => console.error("MongoDB connection error:", err));
 
-const instanceMongoDb = Database.getInstance();
-
-
-module.exports = instanceMongoDb;
+module.exports = mongoose;
