@@ -1,45 +1,68 @@
 <template>
-  <header class="container mb-3">
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg bg-body">
-    <div class="container-fluid">
-      <button
-        data-mdb-collapse-init
-        class="navbar-toggler"
-        type="button"
-        data-mdb-target="#navbarExample01"
-        aria-controls="navbarExample01"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <i class="fas fa-bars"></i>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarExample01">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item active">
-            <a class="nav-link" aria-current="page" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Features</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Pricing</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+  <header class="header">
+    <!--start navbar-->
+    <nav class="navbar navbar-expand-lg fixed-top" style="background: #b6ebfc">
+      <div class="container">
+        <button class="navbar-toggler" @click="handleCollapse">
+          <span class="ti-menu"></span>
+        </button>
 
-</header>
+        <div class="collapse navbar-collapse main-menu" ref="menu" @click="handleCollapse">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item" v-for="(item, index) in menu" :key="index">
+              <RouterLink class="nav-link page-scroll" :to="item.path">{{ item.name }}</RouterLink>
+            </li>
+          </ul>
+          <ul class="navbar-nav ml-auto">
+            <RouterLink to="/products" class="btn google-play-btn mr-3">SẢN PHẨM</RouterLink>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!--end navbar-->
+  </header>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from "vue";
 
-  
+export default defineComponent({
+  name: "header-component",
+  data() {
+    return {
+      menu: [
+        {
+          name: "Trang chủ",
+          path: "/",
+        },
+        {
+          name: "Dịch vụ",
+          path: "/#services",
+        },
+        {
+          name: "Giới thiệu",
+          path: "/#about",
+        },
+        {
+          name: "Liên hệ",
+          path: "/#contact",
+        },
+      ],
+    };
+  },
 
-}
+  methods: {
+    handleCollapse() {
+      const menu_element: any = this.$refs.menu;
+
+      if (menu_element.classList.contains("collapse")) {
+        menu_element.classList.remove("collapse");
+      } else {
+        menu_element.classList.add("collapse");
+      }
+    },
+  },
+});
 </script>
+
+<style></style>

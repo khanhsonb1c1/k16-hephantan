@@ -21,7 +21,7 @@ const ProductServices = {
         try {
     
             // Gọi Business để lấy tất cả sản phẩm từ cơ sở dữ liệu
-            const products = await ProductBusiness.getAllProducts();
+            const products = await ProductBusiness.getAllProducts(req);
             res.status(200).json(products);
         } catch (error) {
             res.status(500).json({ error: error.message });

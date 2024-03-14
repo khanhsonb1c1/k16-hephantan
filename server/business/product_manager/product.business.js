@@ -44,11 +44,16 @@ const ProductBusiness = {
     }
   },
 
-  getAllProducts: async () => {
+  getAllProducts: async (req) => {
     try {
-      console.log("22");
-      // Gọi DAO để lấy tất cả sản phẩm từ cơ sở dữ liệu
-      const products = await ProductDAO.getAllProducts();
+      let products;
+      if (req.query.page) {
+        products = await ProductDAO.getProductsByPage(req.query.page)
+      } else {
+        // Gọi DAO để lấy tất cả sản phẩm từ cơ sở dữ liệu
+         products = await ProductDAO.getAllProducts();
+      }
+
       return products;
     } catch (error) {
       throw new Error("Error getting all products");

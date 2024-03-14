@@ -26,6 +26,18 @@ const ProductDAO = {
     }
   },
 
+  getProductsByPage: async (pageNumber) => {
+    const PAGE_SIZE = 10; // Số lượng sản phẩm trên mỗi trang
+
+    try {
+      const skip = (pageNumber - 1) * PAGE_SIZE; // Số lượng sản phẩm cần bỏ qua
+      const products = await Product.find().skip(skip).limit(PAGE_SIZE); // Lấy sản phẩm theo trang
+      return products;
+    } catch (error) {
+      throw new Error("Error fetching products");
+    }
+  },
+
   updateProduct: async (productId, productData) => {
     try {
       // Cập nhật thông tin sản phẩm trong cơ sở dữ liệu
