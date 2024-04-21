@@ -2,7 +2,6 @@
   <section class="promo-section ptb-100">
     <div class="container">
       <div class="filter-category">
-        <filter-category-item :item="item" v-for="item in categories" :key="item.id" />
         <!-- <div class="item" v-for="item in categories" :key="item.id">
           <span>{{ item.name }}</span>
         </div> -->
@@ -11,9 +10,8 @@
         <cart-item-skeleton v-for="i in 8" :key="i" />
       </div>
       <div class="row equal" v-else>
-        <product-cart v-for="item in list" :key="item.id" :item="item" />
+        <product-cart v-for="item in products" :key="item.id" :item="item" />
       </div>
-      <pagination :paginate="pagination" @change-page="changePage" />
     </div>
   </section>
 </template>
@@ -22,52 +20,20 @@
 import { defineComponent } from "vue";
 import ProductCart from "@/components/ProductCart.vue";
 import CartItemSkeleton from "@/components/CartItemSkeleton.vue";
-import { mapState } from "pinia";
-import { productStore } from "@/stores/productStore";
-import Pagination from "@/components/Pagination.vue";
-import filterCategoryItem from "@/components/filterCategoryItem.vue";
+import { getProduct } from "@/services/getAPI";
 
 export default defineComponent({
   name: "product-list-page",
   components: {
     ProductCart,
     CartItemSkeleton,
-    Pagination,
-    filterCategoryItem,
   },
   data() {
     return {
-      // query: {} as any,
-      categories: [
-        {
-          name: "Tất cả",
-          id: undefined,
-        },
-        {
-          name: "Chăm sóc tóc",
-          id: "003",
-        },
-        {
-          name: "Chăm sóc da",
-          id: "002",
-        },
-        {
-          name: "Thực phẩm",
-          id: "026",
-        },
-        {
-          name: "Thực phẩm chức năng",
-          id: "008",
-        },
-      ],
+      products: [] as any,
     };
   },
-  computed: {
-    ...mapState(productStore, ["list", "fetching", "pagination"]),
-    query() {
-      return this.$route.query;
-    },
-  },
+  computed: {},
   watch: {
     query: {
       immediate: true,
@@ -77,16 +43,18 @@ export default defineComponent({
     },
   },
 
+  created() {
+    this.fetchProduct();
+  },
+
   methods: {
-    changePage(page: number) {
-      this.$router.push({
-        query: {
-          page: page,
-        },
-      });
-    },
     fetchProduct() {
-      productStore().fetchProductList(this.query);
+      getProduct({
+        page: 1,
+      }).then(({ data }) => {
+        console.log(data);
+        this.products = data;
+      });
     },
   },
 });

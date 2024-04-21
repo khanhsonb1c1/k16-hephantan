@@ -12,6 +12,16 @@
             <li class="nav-item" v-for="(item, index) in menu" :key="index">
               <RouterLink class="nav-link page-scroll" :to="item.path">{{ item.name }}</RouterLink>
             </li>
+            <li class="nav-item">
+              <RouterLink class="nav-link page-scroll" to="/manager" v-if="user?.role === 'admin'">Quản lý</RouterLink>
+            </li>
+            <li class="nav-item" v-if="!user._id">
+              <RouterLink class="nav-link page-scroll" to="/login">Đăng nhập</RouterLink>
+            </li>
+
+            <li class="nav-item" v-else>
+              <RouterLink class="nav-link page-scroll" to="/login" @click="onLogout()">Đăng xuất</RouterLink>
+            </li>
           </ul>
           <ul class="navbar-nav ml-auto">
             <RouterLink to="/products" class="btn google-play-btn mr-3">SẢN PHẨM</RouterLink>
@@ -25,6 +35,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import { authStore } from "../stores/authStore.";
 
 export default defineComponent({
   name: "header-component",
@@ -51,6 +62,12 @@ export default defineComponent({
     };
   },
 
+  computed: {
+    user() {
+      return authStore().auth;
+    },
+  },
+
   methods: {
     handleCollapse() {
       const menu_element: any = this.$refs.menu;
@@ -60,6 +77,10 @@ export default defineComponent({
       } else {
         menu_element.classList.add("collapse");
       }
+    },
+
+    onLogout() {
+      authStore().auth = {};
     },
   },
 });

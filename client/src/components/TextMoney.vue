@@ -34,7 +34,7 @@ export default defineComponent({
   },
   computed: {
     amountDisplay() {
-     return new Intl.NumberFormat("ja-JP", {
+      return new Intl.NumberFormat("vi-VN", {
         style: "currency",
         currency: this.currency,
       }).format(this.amount);

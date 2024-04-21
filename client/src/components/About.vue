@@ -4,12 +4,12 @@
       <div class="row justify-content-center">
         <div class="col-lg-8 col-md-8">
           <div class="section-heading text-center mb-5">
-            <h2 style="font-size: 2.4em;">Về chúng tôi</h2>
+            <h2 style="font-size: 2.4em">Về chúng tôi</h2>
             <p class="lead">
-              Công ty TomoniVN là một trong những doanh nghiệp hàng đầu trong lĩnh vực bán lẻ hàng nội địa tại Nhật Bản.
-              Chúng tôi cam kết mang đến cho khách hàng những sản phẩm chất lượng cao, đa dạng và phong cách, đồng thời
-              tạo ra trải nghiệm mua sắm thú vị và tiện lợi. Với đội ngũ nhân viên chuyên nghiệp và tận tâm, TomoniVN
-              luôn đặt lợi ích của khách hàng lên hàng đầu, mang lại sự hài lòng và tin tưởng cho mỗi giao dịch.
+              Hoàng Long Fruit là điểm đến hàng đầu cho những người yêu thích
+              hoa quả tươi ngon và chất lượng. Với đa dạng sản phẩm từ các loại
+              trái cây trong và ngoài nước, chúng tôi cam kết mang đến cho khách
+              hàng những trải nghiệm mua sắm thú vị và hài lòng nhất.
             </p>
           </div>
         </div>

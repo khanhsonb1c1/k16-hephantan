@@ -25,6 +25,7 @@ const UserBusiness = {
 
     updateUser: async (userId, userData) => {
         try {
+            console.log(userData, "user data")
             // Gọi DAO để cập nhật thông tin người dùng trong cơ sở dữ liệu
             const updatedUserData = await UserDAO.updateUser(userId, userData);
             return updatedUserData;
