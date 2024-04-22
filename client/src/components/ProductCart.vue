@@ -7,7 +7,7 @@
       </div>
       <h5 class="text-truncate-2 text-left">{{ item.name }}</h5>
       <div class="d-flex">
-        <text-money :amount="price" color="dark" class="" />
+        <text-money :amount="item.price" color="dark" class="" />
       </div>
     </div>
   </div>

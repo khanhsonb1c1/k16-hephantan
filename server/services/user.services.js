@@ -27,8 +27,9 @@ const updateUser = async (req, res) => {
 const updateRoleUser = async (req, res) => {
   try {
     const userId = req.params.id;
-    const { role } = req.body;
-    const updatedUserData = await UserBusiness.updateRoleUser(userId, role);
+    const updatedUserData = await UserBusiness.updateUser(userId, {
+      role: "admin"
+    });
     res.status(200).json(updatedUserData);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -66,12 +67,13 @@ const getAllUser = async (req, res) => {
 
 const changePassword = async (req, res) => {
   try {
-    const userId = req.params.id;
+    const username = req.params.username;
     const { oldPassword, newPassword } = req.body;
-    await accountBusiness.changePassword(userId, oldPassword, newPassword);
+    await accountBusiness.changePassword(username, oldPassword, newPassword);
     res.status(200).json({ message: "Password changed successfully" });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    console.log(error, "mmm")
+    res.status(500).json({ error: error.message, status: false });
   }
 };
 const login = async (req, res) => {
@@ -80,6 +82,7 @@ const login = async (req, res) => {
     const status = await accountBusiness.login(username, password);
     res.status(200).json(status);
   } catch (error) {
+    console.log(error, "error---");
     res.status(500).json({ error: error.message });
   }
 };

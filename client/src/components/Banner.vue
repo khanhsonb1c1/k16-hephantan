@@ -15,9 +15,9 @@
       <div class="row align-items-center justify-content-between">
         <div class="col-md-6 col-lg-6">
           <div class="hero-content-left ptb-100 text-white">
-            <h1 class="text-white" style="color: #06b5e4 !important">TOMONIVN</h1>
+            <h1 class="text-white" style="color: #06b5e4 !important">Hoang Long Fruit</h1>
             <p class="lead" style="color: #44546b !important">
-              TomoniVN là công ty hàng đầu trong lĩnh vực bán lẻ sản phẩm nội địa Nhật Bản tại Việt Nam.
+              Hoang Long Fruit là công ty hàng đầu trong lĩnh vực bán lẻ hoa quả tại Việt Nam.
             </p>
 
             <div class="download-btn mt-5">
